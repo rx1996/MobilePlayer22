@@ -21,6 +21,7 @@ public class WelcomeActivity extends AppCompatActivity {
             public void run() {
 
                 startMainActivity();
+
             }
         },2000);
     }
