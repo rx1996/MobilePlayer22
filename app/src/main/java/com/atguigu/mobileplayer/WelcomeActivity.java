@@ -24,12 +24,18 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         },2000);
     }
-
+    private boolean isEnterMainActivity = false;
+    //设置触摸事件
     private void startMainActivity() {
-        Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
-        //关闭当前页面
-        finish();
+        if(!isEnterMainActivity){
+            isEnterMainActivity = true;
+            //进入主页面
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+            //关闭启动页面（SplashActivity）
+            finish();
+        }
+
     }
 
     //只要触摸屏幕就直接进入主页面
