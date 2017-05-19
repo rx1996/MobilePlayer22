@@ -1,7 +1,6 @@
 package com.atguigu.mobileplayer;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -73,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
     private void addFragment(Fragment currentFragment) {
         if(tempFragment != currentFragment){
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-
             //判断是否添加过-没有添加
             if(!currentFragment.isAdded()){
                 //把之前的隐藏
@@ -90,13 +88,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //显示当前的
                 ft.show(currentFragment);
-
             }
-
             ft.commit();//提交事务
             //把当前的缓存起来
             tempFragment = currentFragment;
-
         }
     }
     @Override
