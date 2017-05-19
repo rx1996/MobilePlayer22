@@ -34,8 +34,8 @@ public class LocalVideoAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public MediaItem getItem(int position) {
+        return datas.get(position);
     }
 
     @Override

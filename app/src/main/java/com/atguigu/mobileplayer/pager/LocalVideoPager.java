@@ -1,18 +1,20 @@
 package com.atguigu.mobileplayer.pager;
 
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
-import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.atguigu.mobileplayer.R;
+import com.atguigu.mobileplayer.activity.SystemVideoPlayerActivity;
 import com.atguigu.mobileplayer.adapter.LocalVideoAdapter;
 import com.atguigu.mobileplayer.domain.MediaItem;
 import com.atguigu.mobileplayer.fragment.BaseFragment;
@@ -43,6 +45,20 @@ public class LocalVideoPager extends BaseFragment {
         View view = View.inflate(context, R.layout.fragment_local_video_pager, null);
         lv = (ListView) view.findViewById(R.id.lv);
         tv_nodata = (TextView) view.findViewById(R.id.tv_nodata);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+             //   MediaItem mediaItem = mediaItems.get(position);
+
+                MediaItem item = adapter.getItem(position);
+                Toast.makeText(context, ""+item.toString(), Toast.LENGTH_SHORT).show();
+                //把系统的播放器调起来
+                Intent intent = new Intent(context,SystemVideoPlayerActivity.class);
+                intent.setDataAndType(Uri.parse(item.getData()),"video/*");
+                startActivity(intent);
+
+            }
+        });
         return view;
     }
 
